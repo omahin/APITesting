@@ -1,0 +1,1762 @@
+{
+  "collection": {
+    "_": {
+      "postman_id": "bab5c654-685c-4c5e-b70c-df9f8f28c433",
+      "exporter_id": "17052005"
+    },
+    "item": [
+      {
+        "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+        "name": "/v1/public/characters",
+        "request": {
+          "url": {
+            "protocol": "https",
+            "path": [
+              "v1",
+              "public",
+              "characters"
+            ],
+            "host": [
+              "gateway",
+              "marvel",
+              "com"
+            ],
+            "query": [
+              {
+                "key": "apikey",
+                "value": "{{publicKey}}"
+              },
+              {
+                "key": "ts",
+                "value": "{{ts}}"
+              },
+              {
+                "key": "hash",
+                "value": "{{hash}}"
+              }
+            ],
+            "variable": []
+          },
+          "method": "GET",
+          "auth": {
+            "type": "apikey",
+            "apikey": [
+              {
+                "type": "any",
+                "value": "header",
+                "key": "in"
+              },
+              {
+                "type": "any",
+                "value": "api_key",
+                "key": "key"
+              },
+              {
+                "type": "any",
+                "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
+                "key": "value"
+              }
+            ]
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "prerequest",
+            "script": {
+              "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+              "type": "text/javascript",
+              "exec": [
+                "// Gerar timestamp\r",
+                "const ts = new Date().getTime();\r",
+                "pm.environment.set(\"ts\", ts);\r",
+                "\r",
+                "// Pegar chaves pública e privada\r",
+                "const publicKey = pm.environment.get(\"publicKey\");\r",
+                "const privateKey = pm.environment.get(\"privateKey\");\r",
+                "\r",
+                "// Gerar hash\r",
+                "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();\r",
+                "pm.environment.set(\"hash\", hash);\r",
+                ""
+              ],
+              "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+            }
+          },
+          {
+            "listen": "test",
+            "script": {
+              "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Successful GET request', function () {\r",
+                "    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+                "})\r",
+                "\r",
+                "pm.test('Body matches string 3-D', function () {\r",
+                "    pm.expect(pm.response.text()).to.include('3-D Man');\r",
+                "})\r",
+                "\r",
+                "pm.test('Response time is less than 300ms', function () {\r",
+                "    pm.expect(pm.response.responseTime).to.be.above(300);\r",
+                "})\r",
+                "\r",
+                "pm.test('Content-Type is present', function () {\r",
+                "    pm.response.to.have.header('Content-Type');\r",
+                "})\r",
+                "\r",
+                "pm.test('Content-Type is JSON', function () {\r",
+                "    pm.response.to.be.json;\r",
+                "})\r",
+                "\r",
+                "pm.test(\"response is ok\", function () {\r",
+                "    pm.response.to.have.status(200);\r",
+                "});\r",
+                "\r",
+                "let jsonResponse = pm.response.json();\r",
+                "\r",
+                "pm.test(\"Response should be a parsable JSON\", function() {\r",
+                "    pm.expect(jsonResponse).to.be.ok;\r",
+                "});\r",
+                "\r",
+                "pm.test(\"Response body should be an object\", function() {\r",
+                "    pm.expect(jsonResponse).to.be.an('object');\r",
+                "});\r",
+                "\r",
+                "\r",
+                ""
+              ],
+              "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+            }
+          }
+        ]
+      }
+    ],
+    "auth": {
+      "type": "apikey",
+      "apikey": [
+        {
+          "type": "any",
+          "value": "",
+          "key": "value"
+        },
+        {
+          "type": "any",
+          "value": "",
+          "key": "key"
+        },
+        {
+          "type": "any",
+          "value": "query",
+          "key": "in"
+        }
+      ]
+    },
+    "event": [
+      {
+        "listen": "prerequest",
+        "script": {
+          "id": "da054ebf-1237-4561-9cbf-9338dabb7fb5",
+          "type": "text/javascript",
+          "exec": [
+            "// Gerar timestamp",
+            "const ts = new Date().getTime();",
+            "pm.environment.set(\"ts\", ts);",
+            "",
+            "// Pegar chaves pública e privada",
+            "const publicKey = pm.environment.get(\"publicKey\");",
+            "const privateKey = pm.environment.get(\"privateKey\");",
+            "",
+            "// Gerar hash",
+            "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();",
+            "pm.environment.set(\"hash\", hash);",
+            ""
+          ],
+          "_lastExecutionId": "b789b15d-70b0-4ee0-bd15-b82472c73a2b"
+        }
+      },
+      {
+        "listen": "test",
+        "script": {
+          "id": "256143e0-b2bf-4d72-a6ac-409a25e161a5",
+          "type": "text/javascript",
+          "exec": [
+            ""
+          ],
+          "_lastExecutionId": "f3b35560-639a-4c58-bc46-4daa26c9df04"
+        }
+      }
+    ],
+    "variable": [],
+    "info": {
+      "_postman_id": "bab5c654-685c-4c5e-b70c-df9f8f28c433",
+      "name": "Marvel API Test",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    }
+  },
+  "environment": {
+    "id": "a0a369c5-59b4-47d4-8278-6360cdc90b13",
+    "values": [
+      {
+        "type": "any",
+        "value": 1720119780866,
+        "key": "ts"
+      },
+      {
+        "type": "any",
+        "value": "d41d8cd98f00b204e9800998ecf8427e",
+        "key": "hash"
+      }
+    ]
+  },
+  "globals": {
+    "id": "ee32e865-e462-42e0-bea6-092bbd936911",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 4,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 8,
+        "pending": 0,
+        "failed": 3
+      },
+      "testScripts": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 1056,
+      "responseMin": 1056,
+      "responseMax": 1056,
+      "responseSd": 0,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1720119780839,
+      "completed": 1720119781973
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 1,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "87afa7a9-38c7-4622-9a86-403a3179f015",
+          "httpRequestId": "8acabac1-495b-43fd-b675-4244506d3e66"
+        },
+        "item": {
+          "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+          "name": "/v1/public/characters",
+          "request": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                "public",
+                "characters"
+              ],
+              "host": [
+                "gateway",
+                "marvel",
+                "com"
+              ],
+              "query": [
+                {
+                  "key": "apikey",
+                  "value": "{{publicKey}}"
+                },
+                {
+                  "key": "ts",
+                  "value": "{{ts}}"
+                },
+                {
+                  "key": "hash",
+                  "value": "{{hash}}"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "type": "any",
+                  "value": "header",
+                  "key": "in"
+                },
+                {
+                  "type": "any",
+                  "value": "api_key",
+                  "key": "key"
+                },
+                {
+                  "type": "any",
+                  "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
+                  "key": "value"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                "type": "text/javascript",
+                "exec": [
+                  "// Gerar timestamp\r",
+                  "const ts = new Date().getTime();\r",
+                  "pm.environment.set(\"ts\", ts);\r",
+                  "\r",
+                  "// Pegar chaves pública e privada\r",
+                  "const publicKey = pm.environment.get(\"publicKey\");\r",
+                  "const privateKey = pm.environment.get(\"privateKey\");\r",
+                  "\r",
+                  "// Gerar hash\r",
+                  "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();\r",
+                  "pm.environment.set(\"hash\", hash);\r",
+                  ""
+                ],
+                "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Successful GET request', function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Body matches string 3-D', function () {\r",
+                  "    pm.expect(pm.response.text()).to.include('3-D Man');\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response time is less than 300ms', function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.above(300);\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Content-Type is present', function () {\r",
+                  "    pm.response.to.have.header('Content-Type');\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Content-Type is JSON', function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"response is ok\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonResponse = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Response should be a parsable JSON\", function() {\r",
+                  "    pm.expect(jsonResponse).to.be.ok;\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response body should be an object\", function() {\r",
+                  "    pm.expect(jsonResponse).to.be.an('object');\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  ""
+                ],
+                "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "https",
+            "path": [
+              "v1",
+              "public",
+              "characters"
+            ],
+            "host": [
+              "gateway",
+              "marvel",
+              "com"
+            ],
+            "query": [
+              {
+                "key": "apikey",
+                "value": "{{publicKey}}"
+              },
+              {
+                "key": "ts",
+                "value": "1720119780866"
+              },
+              {
+                "key": "hash",
+                "value": "d41d8cd98f00b204e9800998ecf8427e"
+              }
+            ],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "api_key",
+              "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
+              "system": true
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.0",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "d35ca7f4-410b-402b-bea6-9fe07b540e92",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "gateway.marvel.com",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET",
+          "auth": {
+            "type": "apikey",
+            "apikey": [
+              {
+                "type": "any",
+                "value": "header",
+                "key": "in"
+              },
+              {
+                "type": "any",
+                "value": "api_key",
+                "key": "key"
+              },
+              {
+                "type": "any",
+                "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
+                "key": "value"
+              }
+            ]
+          }
+        },
+        "response": {
+          "id": "99781078-e9cd-4c6a-b4b6-af850e437753",
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Encoding",
+              "value": "gzip"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 04 Jul 2024 19:17:06 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              99,
+              111,
+              100,
+              101,
+              34,
+              58,
+              34,
+              73,
+              110,
+              118,
+              97,
+              108,
+              105,
+              100,
+              67,
+              114,
+              101,
+              100,
+              101,
+              110,
+              116,
+              105,
+              97,
+              108,
+              115,
+              34,
+              44,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              84,
+              104,
+              101,
+              32,
+              112,
+              97,
+              115,
+              115,
+              101,
+              100,
+              32,
+              65,
+              80,
+              73,
+              32,
+              107,
+              101,
+              121,
+              32,
+              105,
+              115,
+              32,
+              105,
+              110,
+              118,
+              97,
+              108,
+              105,
+              100,
+              46,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 1056,
+          "responseSize": 72
+        },
+        "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+        "assertions": [
+          {
+            "assertion": "Successful GET request",
+            "skipped": false,
+            "error": {
+              "name": "AssertionError",
+              "index": 0,
+              "test": "Successful GET request",
+              "message": "expected 401 to be one of [ 200 ]",
+              "stack": "AssertionError: expected 401 to be one of [ 200 ]\n   at Object.eval sandbox-script.js:1:1)"
+            }
+          },
+          {
+            "assertion": "Body matches string 3-D",
+            "skipped": false,
+            "error": {
+              "name": "AssertionError",
+              "index": 1,
+              "test": "Body matches string 3-D",
+              "message": "expected '{\"code\":\"InvalidCredentials\",\"message…' to include '3-D Man'",
+              "stack": "AssertionError: expected '{\"code\":\"InvalidCredentials\",\"message…' to include '3-D Man'\n   at Object.eval sandbox-script.js:2:1)"
+            }
+          },
+          {
+            "assertion": "Response time is less than 300ms",
+            "skipped": false
+          },
+          {
+            "assertion": "Content-Type is present",
+            "skipped": false
+          },
+          {
+            "assertion": "Content-Type is JSON",
+            "skipped": false
+          },
+          {
+            "assertion": "response is ok",
+            "skipped": false,
+            "error": {
+              "name": "AssertionError",
+              "index": 5,
+              "test": "response is ok",
+              "message": "expected response to have status code 200 but got 401",
+              "stack": "AssertionError: expected response to have status code 200 but got 401\n   at Object.eval sandbox-script.js:6:1)"
+            }
+          },
+          {
+            "assertion": "Response should be a parsable JSON",
+            "skipped": false
+          },
+          {
+            "assertion": "Response body should be an object",
+            "skipped": false
+          }
+        ]
+      }
+    ],
+    "transfers": {
+      "responseTotal": 72
+    },
+    "failures": [
+      {
+        "error": {
+          "name": "AssertionError",
+          "index": 0,
+          "test": "Successful GET request",
+          "message": "expected 401 to be one of [ 200 ]",
+          "stack": "AssertionError: expected 401 to be one of [ 200 ]\n   at Object.eval sandbox-script.js:1:1)",
+          "checksum": "4dca3f8f353425284ea3969cd6df5d58",
+          "id": "16097495-0f4b-4b4d-b4c5-3212a417f8b4",
+          "timestamp": 1720119781959,
+          "stacktrace": [
+            {
+              "fileName": "sandbox-script.js",
+              "lineNumber": 1,
+              "functionName": "Object.eval",
+              "typeName": "Object",
+              "methodName": "eval",
+              "columnNumber": 1,
+              "native": false
+            }
+          ]
+        },
+        "at": "assertion:0 in test-script",
+        "source": {
+          "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+          "name": "/v1/public/characters",
+          "request": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                "public",
+                "characters"
+              ],
+              "host": [
+                "gateway",
+                "marvel",
+                "com"
+              ],
+              "query": [
+                {
+                  "key": "apikey",
+                  "value": "{{publicKey}}"
+                },
+                {
+                  "key": "ts",
+                  "value": "{{ts}}"
+                },
+                {
+                  "key": "hash",
+                  "value": "{{hash}}"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "type": "any",
+                  "value": "header",
+                  "key": "in"
+                },
+                {
+                  "type": "any",
+                  "value": "api_key",
+                  "key": "key"
+                },
+                {
+                  "type": "any",
+                  "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
+                  "key": "value"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                "type": "text/javascript",
+                "exec": [
+                  "// Gerar timestamp\r",
+                  "const ts = new Date().getTime();\r",
+                  "pm.environment.set(\"ts\", ts);\r",
+                  "\r",
+                  "// Pegar chaves pública e privada\r",
+                  "const publicKey = pm.environment.get(\"publicKey\");\r",
+                  "const privateKey = pm.environment.get(\"privateKey\");\r",
+                  "\r",
+                  "// Gerar hash\r",
+                  "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();\r",
+                  "pm.environment.set(\"hash\", hash);\r",
+                  ""
+                ],
+                "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Successful GET request', function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Body matches string 3-D', function () {\r",
+                  "    pm.expect(pm.response.text()).to.include('3-D Man');\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response time is less than 300ms', function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.above(300);\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Content-Type is present', function () {\r",
+                  "    pm.response.to.have.header('Content-Type');\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Content-Type is JSON', function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"response is ok\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonResponse = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Response should be a parsable JSON\", function() {\r",
+                  "    pm.expect(jsonResponse).to.be.ok;\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response body should be an object\", function() {\r",
+                  "    pm.expect(jsonResponse).to.be.an('object');\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  ""
+                ],
+                "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+              }
+            }
+          ]
+        },
+        "parent": {
+          "_": {
+            "postman_id": "bab5c654-685c-4c5e-b70c-df9f8f28c433",
+            "exporter_id": "17052005"
+          },
+          "item": [
+            {
+              "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+              "name": "/v1/public/characters",
+              "request": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    "public",
+                    "characters"
+                  ],
+                  "host": [
+                    "gateway",
+                    "marvel",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "{{publicKey}}"
+                    },
+                    {
+                      "key": "ts",
+                      "value": "{{ts}}"
+                    },
+                    {
+                      "key": "hash",
+                      "value": "{{hash}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "type": "any",
+                      "value": "header",
+                      "key": "in"
+                    },
+                    {
+                      "type": "any",
+                      "value": "api_key",
+                      "key": "key"
+                    },
+                    {
+                      "type": "any",
+                      "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
+                      "key": "value"
+                    }
+                  ]
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                    "type": "text/javascript",
+                    "exec": [
+                      "// Gerar timestamp\r",
+                      "const ts = new Date().getTime();\r",
+                      "pm.environment.set(\"ts\", ts);\r",
+                      "\r",
+                      "// Pegar chaves pública e privada\r",
+                      "const publicKey = pm.environment.get(\"publicKey\");\r",
+                      "const privateKey = pm.environment.get(\"privateKey\");\r",
+                      "\r",
+                      "// Gerar hash\r",
+                      "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();\r",
+                      "pm.environment.set(\"hash\", hash);\r",
+                      ""
+                    ],
+                    "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Successful GET request', function () {\r",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+                      "})\r",
+                      "\r",
+                      "pm.test('Body matches string 3-D', function () {\r",
+                      "    pm.expect(pm.response.text()).to.include('3-D Man');\r",
+                      "})\r",
+                      "\r",
+                      "pm.test('Response time is less than 300ms', function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.above(300);\r",
+                      "})\r",
+                      "\r",
+                      "pm.test('Content-Type is present', function () {\r",
+                      "    pm.response.to.have.header('Content-Type');\r",
+                      "})\r",
+                      "\r",
+                      "pm.test('Content-Type is JSON', function () {\r",
+                      "    pm.response.to.be.json;\r",
+                      "})\r",
+                      "\r",
+                      "pm.test(\"response is ok\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "let jsonResponse = pm.response.json();\r",
+                      "\r",
+                      "pm.test(\"Response should be a parsable JSON\", function() {\r",
+                      "    pm.expect(jsonResponse).to.be.ok;\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response body should be an object\", function() {\r",
+                      "    pm.expect(jsonResponse).to.be.an('object');\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      ""
+                    ],
+                    "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+                  }
+                }
+              ]
+            }
+          ],
+          "auth": {
+            "type": "apikey",
+            "apikey": [
+              {
+                "type": "any",
+                "value": "",
+                "key": "value"
+              },
+              {
+                "type": "any",
+                "value": "",
+                "key": "key"
+              },
+              {
+                "type": "any",
+                "value": "query",
+                "key": "in"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "da054ebf-1237-4561-9cbf-9338dabb7fb5",
+                "type": "text/javascript",
+                "exec": [
+                  "// Gerar timestamp",
+                  "const ts = new Date().getTime();",
+                  "pm.environment.set(\"ts\", ts);",
+                  "",
+                  "// Pegar chaves pública e privada",
+                  "const publicKey = pm.environment.get(\"publicKey\");",
+                  "const privateKey = pm.environment.get(\"privateKey\");",
+                  "",
+                  "// Gerar hash",
+                  "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();",
+                  "pm.environment.set(\"hash\", hash);",
+                  ""
+                ],
+                "_lastExecutionId": "b789b15d-70b0-4ee0-bd15-b82472c73a2b"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "256143e0-b2bf-4d72-a6ac-409a25e161a5",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ],
+                "_lastExecutionId": "f3b35560-639a-4c58-bc46-4daa26c9df04"
+              }
+            }
+          ],
+          "variable": [],
+          "info": {
+            "_postman_id": "bab5c654-685c-4c5e-b70c-df9f8f28c433",
+            "name": "Marvel API Test",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+          }
+        },
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 1,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "87afa7a9-38c7-4622-9a86-403a3179f015",
+          "httpRequestId": "8acabac1-495b-43fd-b675-4244506d3e66",
+          "scriptId": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+          "execution": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+        }
+      },
+      {
+        "error": {
+          "name": "AssertionError",
+          "index": 1,
+          "test": "Body matches string 3-D",
+          "message": "expected '{\"code\":\"InvalidCredentials\",\"message…' to include '3-D Man'",
+          "stack": "AssertionError: expected '{\"code\":\"InvalidCredentials\",\"message…' to include '3-D Man'\n   at Object.eval sandbox-script.js:2:1)",
+          "checksum": "f65859ccfa60ea6e66ad0aeb96747c23",
+          "id": "b369a103-7334-4e0c-a9f8-4918df9792bb",
+          "timestamp": 1720119781963,
+          "stacktrace": [
+            {
+              "fileName": "sandbox-script.js",
+              "lineNumber": 2,
+              "functionName": "Object.eval",
+              "typeName": "Object",
+              "methodName": "eval",
+              "columnNumber": 1,
+              "native": false
+            }
+          ]
+        },
+        "at": "assertion:1 in test-script",
+        "source": {
+          "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+          "name": "/v1/public/characters",
+          "request": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                "public",
+                "characters"
+              ],
+              "host": [
+                "gateway",
+                "marvel",
+                "com"
+              ],
+              "query": [
+                {
+                  "key": "apikey",
+                  "value": "{{publicKey}}"
+                },
+                {
+                  "key": "ts",
+                  "value": "{{ts}}"
+                },
+                {
+                  "key": "hash",
+                  "value": "{{hash}}"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "type": "any",
+                  "value": "header",
+                  "key": "in"
+                },
+                {
+                  "type": "any",
+                  "value": "api_key",
+                  "key": "key"
+                },
+                {
+                  "type": "any",
+                  "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
+                  "key": "value"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                "type": "text/javascript",
+                "exec": [
+                  "// Gerar timestamp\r",
+                  "const ts = new Date().getTime();\r",
+                  "pm.environment.set(\"ts\", ts);\r",
+                  "\r",
+                  "// Pegar chaves pública e privada\r",
+                  "const publicKey = pm.environment.get(\"publicKey\");\r",
+                  "const privateKey = pm.environment.get(\"privateKey\");\r",
+                  "\r",
+                  "// Gerar hash\r",
+                  "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();\r",
+                  "pm.environment.set(\"hash\", hash);\r",
+                  ""
+                ],
+                "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Successful GET request', function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Body matches string 3-D', function () {\r",
+                  "    pm.expect(pm.response.text()).to.include('3-D Man');\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response time is less than 300ms', function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.above(300);\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Content-Type is present', function () {\r",
+                  "    pm.response.to.have.header('Content-Type');\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Content-Type is JSON', function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"response is ok\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonResponse = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Response should be a parsable JSON\", function() {\r",
+                  "    pm.expect(jsonResponse).to.be.ok;\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response body should be an object\", function() {\r",
+                  "    pm.expect(jsonResponse).to.be.an('object');\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  ""
+                ],
+                "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+              }
+            }
+          ]
+        },
+        "parent": {
+          "_": {
+            "postman_id": "bab5c654-685c-4c5e-b70c-df9f8f28c433",
+            "exporter_id": "17052005"
+          },
+          "item": [
+            {
+              "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+              "name": "/v1/public/characters",
+              "request": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    "public",
+                    "characters"
+                  ],
+                  "host": [
+                    "gateway",
+                    "marvel",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "{{publicKey}}"
+                    },
+                    {
+                      "key": "ts",
+                      "value": "{{ts}}"
+                    },
+                    {
+                      "key": "hash",
+                      "value": "{{hash}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "type": "any",
+                      "value": "header",
+                      "key": "in"
+                    },
+                    {
+                      "type": "any",
+                      "value": "api_key",
+                      "key": "key"
+                    },
+                    {
+                      "type": "any",
+                      "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
+                      "key": "value"
+                    }
+                  ]
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                    "type": "text/javascript",
+                    "exec": [
+                      "// Gerar timestamp\r",
+                      "const ts = new Date().getTime();\r",
+                      "pm.environment.set(\"ts\", ts);\r",
+                      "\r",
+                      "// Pegar chaves pública e privada\r",
+                      "const publicKey = pm.environment.get(\"publicKey\");\r",
+                      "const privateKey = pm.environment.get(\"privateKey\");\r",
+                      "\r",
+                      "// Gerar hash\r",
+                      "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();\r",
+                      "pm.environment.set(\"hash\", hash);\r",
+                      ""
+                    ],
+                    "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Successful GET request', function () {\r",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+                      "})\r",
+                      "\r",
+                      "pm.test('Body matches string 3-D', function () {\r",
+                      "    pm.expect(pm.response.text()).to.include('3-D Man');\r",
+                      "})\r",
+                      "\r",
+                      "pm.test('Response time is less than 300ms', function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.above(300);\r",
+                      "})\r",
+                      "\r",
+                      "pm.test('Content-Type is present', function () {\r",
+                      "    pm.response.to.have.header('Content-Type');\r",
+                      "})\r",
+                      "\r",
+                      "pm.test('Content-Type is JSON', function () {\r",
+                      "    pm.response.to.be.json;\r",
+                      "})\r",
+                      "\r",
+                      "pm.test(\"response is ok\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "let jsonResponse = pm.response.json();\r",
+                      "\r",
+                      "pm.test(\"Response should be a parsable JSON\", function() {\r",
+                      "    pm.expect(jsonResponse).to.be.ok;\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response body should be an object\", function() {\r",
+                      "    pm.expect(jsonResponse).to.be.an('object');\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      ""
+                    ],
+                    "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+                  }
+                }
+              ]
+            }
+          ],
+          "auth": {
+            "type": "apikey",
+            "apikey": [
+              {
+                "type": "any",
+                "value": "",
+                "key": "value"
+              },
+              {
+                "type": "any",
+                "value": "",
+                "key": "key"
+              },
+              {
+                "type": "any",
+                "value": "query",
+                "key": "in"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "da054ebf-1237-4561-9cbf-9338dabb7fb5",
+                "type": "text/javascript",
+                "exec": [
+                  "// Gerar timestamp",
+                  "const ts = new Date().getTime();",
+                  "pm.environment.set(\"ts\", ts);",
+                  "",
+                  "// Pegar chaves pública e privada",
+                  "const publicKey = pm.environment.get(\"publicKey\");",
+                  "const privateKey = pm.environment.get(\"privateKey\");",
+                  "",
+                  "// Gerar hash",
+                  "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();",
+                  "pm.environment.set(\"hash\", hash);",
+                  ""
+                ],
+                "_lastExecutionId": "b789b15d-70b0-4ee0-bd15-b82472c73a2b"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "256143e0-b2bf-4d72-a6ac-409a25e161a5",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ],
+                "_lastExecutionId": "f3b35560-639a-4c58-bc46-4daa26c9df04"
+              }
+            }
+          ],
+          "variable": [],
+          "info": {
+            "_postman_id": "bab5c654-685c-4c5e-b70c-df9f8f28c433",
+            "name": "Marvel API Test",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+          }
+        },
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 1,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "87afa7a9-38c7-4622-9a86-403a3179f015",
+          "httpRequestId": "8acabac1-495b-43fd-b675-4244506d3e66",
+          "scriptId": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+          "execution": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+        }
+      },
+      {
+        "error": {
+          "name": "AssertionError",
+          "index": 5,
+          "test": "response is ok",
+          "message": "expected response to have status code 200 but got 401",
+          "stack": "AssertionError: expected response to have status code 200 but got 401\n   at Object.eval sandbox-script.js:6:1)",
+          "checksum": "c3d52c3f4ca6e1b7a85156faf2dffe38",
+          "id": "caf3f4d5-2777-4a66-a062-a6a81c0bac79",
+          "timestamp": 1720119781966,
+          "stacktrace": [
+            {
+              "fileName": "sandbox-script.js",
+              "lineNumber": 6,
+              "functionName": "Object.eval",
+              "typeName": "Object",
+              "methodName": "eval",
+              "columnNumber": 1,
+              "native": false
+            }
+          ]
+        },
+        "at": "assertion:5 in test-script",
+        "source": {
+          "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+          "name": "/v1/public/characters",
+          "request": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v1",
+                "public",
+                "characters"
+              ],
+              "host": [
+                "gateway",
+                "marvel",
+                "com"
+              ],
+              "query": [
+                {
+                  "key": "apikey",
+                  "value": "{{publicKey}}"
+                },
+                {
+                  "key": "ts",
+                  "value": "{{ts}}"
+                },
+                {
+                  "key": "hash",
+                  "value": "{{hash}}"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "type": "any",
+                  "value": "header",
+                  "key": "in"
+                },
+                {
+                  "type": "any",
+                  "value": "api_key",
+                  "key": "key"
+                },
+                {
+                  "type": "any",
+                  "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
+                  "key": "value"
+                }
+              ]
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                "type": "text/javascript",
+                "exec": [
+                  "// Gerar timestamp\r",
+                  "const ts = new Date().getTime();\r",
+                  "pm.environment.set(\"ts\", ts);\r",
+                  "\r",
+                  "// Pegar chaves pública e privada\r",
+                  "const publicKey = pm.environment.get(\"publicKey\");\r",
+                  "const privateKey = pm.environment.get(\"privateKey\");\r",
+                  "\r",
+                  "// Gerar hash\r",
+                  "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();\r",
+                  "pm.environment.set(\"hash\", hash);\r",
+                  ""
+                ],
+                "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Successful GET request', function () {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Body matches string 3-D', function () {\r",
+                  "    pm.expect(pm.response.text()).to.include('3-D Man');\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response time is less than 300ms', function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.above(300);\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Content-Type is present', function () {\r",
+                  "    pm.response.to.have.header('Content-Type');\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Content-Type is JSON', function () {\r",
+                  "    pm.response.to.be.json;\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"response is ok\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "let jsonResponse = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Response should be a parsable JSON\", function() {\r",
+                  "    pm.expect(jsonResponse).to.be.ok;\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response body should be an object\", function() {\r",
+                  "    pm.expect(jsonResponse).to.be.an('object');\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  ""
+                ],
+                "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+              }
+            }
+          ]
+        },
+        "parent": {
+          "_": {
+            "postman_id": "bab5c654-685c-4c5e-b70c-df9f8f28c433",
+            "exporter_id": "17052005"
+          },
+          "item": [
+            {
+              "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+              "name": "/v1/public/characters",
+              "request": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v1",
+                    "public",
+                    "characters"
+                  ],
+                  "host": [
+                    "gateway",
+                    "marvel",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "{{publicKey}}"
+                    },
+                    {
+                      "key": "ts",
+                      "value": "{{ts}}"
+                    },
+                    {
+                      "key": "hash",
+                      "value": "{{hash}}"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "type": "any",
+                      "value": "header",
+                      "key": "in"
+                    },
+                    {
+                      "type": "any",
+                      "value": "api_key",
+                      "key": "key"
+                    },
+                    {
+                      "type": "any",
+                      "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
+                      "key": "value"
+                    }
+                  ]
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                    "type": "text/javascript",
+                    "exec": [
+                      "// Gerar timestamp\r",
+                      "const ts = new Date().getTime();\r",
+                      "pm.environment.set(\"ts\", ts);\r",
+                      "\r",
+                      "// Pegar chaves pública e privada\r",
+                      "const publicKey = pm.environment.get(\"publicKey\");\r",
+                      "const privateKey = pm.environment.get(\"privateKey\");\r",
+                      "\r",
+                      "// Gerar hash\r",
+                      "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();\r",
+                      "pm.environment.set(\"hash\", hash);\r",
+                      ""
+                    ],
+                    "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Successful GET request', function () {\r",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+                      "})\r",
+                      "\r",
+                      "pm.test('Body matches string 3-D', function () {\r",
+                      "    pm.expect(pm.response.text()).to.include('3-D Man');\r",
+                      "})\r",
+                      "\r",
+                      "pm.test('Response time is less than 300ms', function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.above(300);\r",
+                      "})\r",
+                      "\r",
+                      "pm.test('Content-Type is present', function () {\r",
+                      "    pm.response.to.have.header('Content-Type');\r",
+                      "})\r",
+                      "\r",
+                      "pm.test('Content-Type is JSON', function () {\r",
+                      "    pm.response.to.be.json;\r",
+                      "})\r",
+                      "\r",
+                      "pm.test(\"response is ok\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "let jsonResponse = pm.response.json();\r",
+                      "\r",
+                      "pm.test(\"Response should be a parsable JSON\", function() {\r",
+                      "    pm.expect(jsonResponse).to.be.ok;\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response body should be an object\", function() {\r",
+                      "    pm.expect(jsonResponse).to.be.an('object');\r",
+                      "});\r",
+                      "\r",
+                      "\r",
+                      ""
+                    ],
+                    "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+                  }
+                }
+              ]
+            }
+          ],
+          "auth": {
+            "type": "apikey",
+            "apikey": [
+              {
+                "type": "any",
+                "value": "",
+                "key": "value"
+              },
+              {
+                "type": "any",
+                "value": "",
+                "key": "key"
+              },
+              {
+                "type": "any",
+                "value": "query",
+                "key": "in"
+              }
+            ]
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "da054ebf-1237-4561-9cbf-9338dabb7fb5",
+                "type": "text/javascript",
+                "exec": [
+                  "// Gerar timestamp",
+                  "const ts = new Date().getTime();",
+                  "pm.environment.set(\"ts\", ts);",
+                  "",
+                  "// Pegar chaves pública e privada",
+                  "const publicKey = pm.environment.get(\"publicKey\");",
+                  "const privateKey = pm.environment.get(\"privateKey\");",
+                  "",
+                  "// Gerar hash",
+                  "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();",
+                  "pm.environment.set(\"hash\", hash);",
+                  ""
+                ],
+                "_lastExecutionId": "b789b15d-70b0-4ee0-bd15-b82472c73a2b"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "256143e0-b2bf-4d72-a6ac-409a25e161a5",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ],
+                "_lastExecutionId": "f3b35560-639a-4c58-bc46-4daa26c9df04"
+              }
+            }
+          ],
+          "variable": [],
+          "info": {
+            "_postman_id": "bab5c654-685c-4c5e-b70c-df9f8f28c433",
+            "name": "Marvel API Test",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+          }
+        },
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 1,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "87afa7a9-38c7-4622-9a86-403a3179f015",
+          "httpRequestId": "8acabac1-495b-43fd-b675-4244506d3e66",
+          "scriptId": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+          "execution": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+        }
+      }
+    ],
+    "error": null
+  }
+}

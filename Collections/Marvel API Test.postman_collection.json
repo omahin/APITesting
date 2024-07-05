@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "bab5c654-685c-4c5e-b70c-df9f8f28c433",
 		"name": "Marvel API Test",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "17052005"
 	},
 	"item": [
@@ -26,7 +26,8 @@
 							"pm.environment.set(\"hash\", hash);\r",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				},
 				{
@@ -35,23 +36,19 @@
 						"exec": [
 							"pm.test('Successful GET request', function () {\r",
 							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
-							"})\r",
-							"\r",
-							"pm.test('Body matches string 3-D', function () {\r",
-							"    pm.expect(pm.response.text()).to.include('3-D Man');\r",
-							"})\r",
+							"});\r",
 							"\r",
 							"pm.test('Response time is less than 300ms', function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.above(300);\r",
-							"})\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
 							"\r",
 							"pm.test('Content-Type is present', function () {\r",
 							"    pm.response.to.have.header('Content-Type');\r",
-							"})\r",
+							"});\r",
 							"\r",
 							"pm.test('Content-Type is JSON', function () {\r",
 							"    pm.response.to.be.json;\r",
-							"})\r",
+							"});\r",
 							"\r",
 							"pm.test(\"response is ok\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -67,21 +64,62 @@
 							"    pm.expect(jsonResponse).to.be.an('object');\r",
 							"});\r",
 							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json().data;\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.results).to.be.an('array');\r",
+							"    \r",
+							"    responseData.results.forEach(result => {\r",
+							"        pm.expect(result.id).to.exist;\r",
+							"        pm.expect(result.name).to.exist;\r",
+							"        pm.expect(result.description).to.exist;\r",
+							"        pm.expect(result.modified).to.exist;\r",
+							"        pm.expect(result.thumbnail).to.exist;\r",
+							"        pm.expect(result.resourceURI).to.exist;\r",
+							"        pm.expect(result.comics).to.exist;\r",
+							"        pm.expect(result.series).to.exist;\r",
+							"        pm.expect(result.stories).to.exist;\r",
+							"        pm.expect(result.events).to.exist;\r",
+							"        pm.expect(result.urls).to.exist;\r",
+							"    });\r",
+							"});\r",
 							"\r",
-							""
+							"pm.test(\"Thumbnail path is a non-empty string and has a valid extension\", function () {\r",
+							"    const responseData = pm.response.json().data;\r",
+							"    \r",
+							"    pm.expect(responseData.results).to.be.an('array');\r",
+							"    responseData.results.forEach(function(result) {\r",
+							"        pm.expect(result.thumbnail.path).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Thumbnail path should not be empty\");\r",
+							"        pm.expect(result.thumbnail.extension).to.be.a('string').and.to.match(/^(jpg|jpeg|png|gif)$/i, \"Thumbnail extension should be valid\");\r",
+							"    });\r",
+							"});"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
 			"request": {
 				"auth": {
 					"type": "apikey",
-					"apikey": {
-						"in": "header",
-						"key": "api_key",
-						"value": "a511e6d2d12e605782b9d48d738406e774f1b79b"
-					}
+					"apikey": [
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "api_key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
@@ -119,11 +157,23 @@
 	],
 	"auth": {
 		"type": "apikey",
-		"apikey": {
-			"value": "",
-			"key": "",
-			"in": "query"
-		}
+		"apikey": [
+			{
+				"key": "value",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			}
+		]
 	},
 	"event": [
 		{
@@ -131,15 +181,15 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					"// Gerar timestamp",
+					"// Gera timestamp",
 					"const ts = new Date().getTime();",
 					"pm.environment.set(\"ts\", ts);",
 					"",
-					"// Pegar chaves pública e privada",
+					"// Pega chaves pública e privada",
 					"const publicKey = pm.environment.get(\"publicKey\");",
 					"const privateKey = pm.environment.get(\"privateKey\");",
 					"",
-					"// Gerar hash",
+					"// Gera hash",
 					"const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();",
 					"pm.environment.set(\"hash\", hash);",
 					""

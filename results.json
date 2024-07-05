@@ -6,7 +6,7 @@
     },
     "item": [
       {
-        "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+        "id": "040ed895-c349-42b8-ad63-55d9bf1ba05a",
         "name": "/v1/public/characters",
         "request": {
           "url": {
@@ -42,17 +42,17 @@
             "type": "apikey",
             "apikey": [
               {
-                "type": "any",
+                "type": "string",
                 "value": "header",
                 "key": "in"
               },
               {
-                "type": "any",
+                "type": "string",
                 "value": "api_key",
                 "key": "key"
               },
               {
-                "type": "any",
+                "type": "string",
                 "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
                 "key": "value"
               }
@@ -64,7 +64,7 @@
           {
             "listen": "prerequest",
             "script": {
-              "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+              "id": "110b9590-8824-420d-91ac-d6b228043753",
               "type": "text/javascript",
               "exec": [
                 "// Gerar timestamp\r",
@@ -80,13 +80,13 @@
                 "pm.environment.set(\"hash\", hash);\r",
                 ""
               ],
-              "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+              "_lastExecutionId": "3fc2d6ad-4955-4272-8908-94e756ee17f8"
             }
           },
           {
             "listen": "test",
             "script": {
-              "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+              "id": "a637b491-959d-4631-a027-d0bff4d505d7",
               "type": "text/javascript",
               "exec": [
                 "pm.test('Successful GET request', function () {\r",
@@ -126,7 +126,7 @@
                 "\r",
                 ""
               ],
-              "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+              "_lastExecutionId": "2ad28f8c-eb20-4bb4-94b3-ffe9f926dca8"
             }
           }
         ]
@@ -136,17 +136,17 @@
       "type": "apikey",
       "apikey": [
         {
-          "type": "any",
+          "type": "string",
           "value": "",
           "key": "value"
         },
         {
-          "type": "any",
+          "type": "string",
           "value": "",
           "key": "key"
         },
         {
-          "type": "any",
+          "type": "string",
           "value": "query",
           "key": "in"
         }
@@ -156,34 +156,34 @@
       {
         "listen": "prerequest",
         "script": {
-          "id": "da054ebf-1237-4561-9cbf-9338dabb7fb5",
+          "id": "687ce36f-85da-4bce-812e-92dc8ea996df",
           "type": "text/javascript",
           "exec": [
-            "// Gerar timestamp",
+            "// Gera timestamp",
             "const ts = new Date().getTime();",
             "pm.environment.set(\"ts\", ts);",
             "",
-            "// Pegar chaves pública e privada",
+            "// Pega chaves pública e privada",
             "const publicKey = pm.environment.get(\"publicKey\");",
             "const privateKey = pm.environment.get(\"privateKey\");",
             "",
-            "// Gerar hash",
+            "// Gera hash",
             "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();",
             "pm.environment.set(\"hash\", hash);",
             ""
           ],
-          "_lastExecutionId": "b789b15d-70b0-4ee0-bd15-b82472c73a2b"
+          "_lastExecutionId": "40d1e250-2fa8-4c7a-af67-a14dedad3b65"
         }
       },
       {
         "listen": "test",
         "script": {
-          "id": "256143e0-b2bf-4d72-a6ac-409a25e161a5",
+          "id": "b7273c72-ffbd-42d5-9500-fce65b454254",
           "type": "text/javascript",
           "exec": [
             ""
           ],
-          "_lastExecutionId": "f3b35560-639a-4c58-bc46-4daa26c9df04"
+          "_lastExecutionId": "4f94f2f5-7c96-45ff-a692-bcb3b448e6ed"
         }
       }
     ],
@@ -195,11 +195,11 @@
     }
   },
   "environment": {
-    "id": "a0a369c5-59b4-47d4-8278-6360cdc90b13",
+    "id": "80d463bf-5ffe-43db-aa98-2399cd2a4337",
     "values": [
       {
         "type": "any",
-        "value": 1720119780866,
+        "value": 1720203038136,
         "key": "ts"
       },
       {
@@ -210,7 +210,7 @@
     ]
   },
   "globals": {
-    "id": "ee32e865-e462-42e0-bea6-092bbd936911",
+    "id": "a4adc66a-877c-4e96-b8e0-b95c6e450d52",
     "values": []
   },
   "run": {
@@ -262,9 +262,9 @@
       }
     },
     "timings": {
-      "responseAverage": 1056,
-      "responseMin": 1056,
-      "responseMax": 1056,
+      "responseAverage": 675,
+      "responseMin": 675,
+      "responseMax": 675,
       "responseSd": 0,
       "dnsAverage": 0,
       "dnsMin": 0,
@@ -274,8 +274,8 @@
       "firstByteMin": 0,
       "firstByteMax": 0,
       "firstByteSd": 0,
-      "started": 1720119780839,
-      "completed": 1720119781973
+      "started": 1720203038109,
+      "completed": 1720203038861
     },
     "executions": [
       {
@@ -288,11 +288,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "87afa7a9-38c7-4622-9a86-403a3179f015",
-          "httpRequestId": "8acabac1-495b-43fd-b675-4244506d3e66"
+          "ref": "ffa4c9c3-dce0-4dc5-9315-63e20dfb45da",
+          "httpRequestId": "e6d8641e-3dab-48c9-b34f-3f5ec13ca4ed"
         },
         "item": {
-          "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+          "id": "040ed895-c349-42b8-ad63-55d9bf1ba05a",
           "name": "/v1/public/characters",
           "request": {
             "url": {
@@ -328,17 +328,17 @@
               "type": "apikey",
               "apikey": [
                 {
-                  "type": "any",
+                  "type": "string",
                   "value": "header",
                   "key": "in"
                 },
                 {
-                  "type": "any",
+                  "type": "string",
                   "value": "api_key",
                   "key": "key"
                 },
                 {
-                  "type": "any",
+                  "type": "string",
                   "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
                   "key": "value"
                 }
@@ -350,7 +350,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                "id": "110b9590-8824-420d-91ac-d6b228043753",
                 "type": "text/javascript",
                 "exec": [
                   "// Gerar timestamp\r",
@@ -366,13 +366,13 @@
                   "pm.environment.set(\"hash\", hash);\r",
                   ""
                 ],
-                "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+                "_lastExecutionId": "3fc2d6ad-4955-4272-8908-94e756ee17f8"
               }
             },
             {
               "listen": "test",
               "script": {
-                "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                "id": "a637b491-959d-4631-a027-d0bff4d505d7",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Successful GET request', function () {\r",
@@ -412,7 +412,7 @@
                   "\r",
                   ""
                 ],
-                "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+                "_lastExecutionId": "2ad28f8c-eb20-4bb4-94b3-ffe9f926dca8"
               }
             }
           ]
@@ -437,7 +437,7 @@
               },
               {
                 "key": "ts",
-                "value": "1720119780866"
+                "value": "1720203038136"
               },
               {
                 "key": "hash",
@@ -469,7 +469,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "d35ca7f4-410b-402b-bea6-9fe07b540e92",
+              "value": "6eb9d1c9-9bc2-45db-84e9-3a7c776294ee",
               "system": true
             },
             {
@@ -493,17 +493,17 @@
             "type": "apikey",
             "apikey": [
               {
-                "type": "any",
+                "type": "string",
                 "value": "header",
                 "key": "in"
               },
               {
-                "type": "any",
+                "type": "string",
                 "value": "api_key",
                 "key": "key"
               },
               {
-                "type": "any",
+                "type": "string",
                 "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
                 "key": "value"
               }
@@ -511,7 +511,7 @@
           }
         },
         "response": {
-          "id": "99781078-e9cd-4c6a-b4b6-af850e437753",
+          "id": "b47744e7-bc5e-4685-bf44-1886e0751ffc",
           "status": "Unauthorized",
           "code": 401,
           "header": [
@@ -525,7 +525,7 @@
             },
             {
               "key": "Date",
-              "value": "Thu, 04 Jul 2024 19:17:06 GMT"
+              "value": "Fri, 05 Jul 2024 18:24:44 GMT"
             },
             {
               "key": "Connection",
@@ -614,10 +614,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 1056,
+          "responseTime": 675,
           "responseSize": 72
         },
-        "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+        "id": "040ed895-c349-42b8-ad63-55d9bf1ba05a",
         "assertions": [
           {
             "assertion": "Successful GET request",
@@ -687,8 +687,8 @@
           "message": "expected 401 to be one of [ 200 ]",
           "stack": "AssertionError: expected 401 to be one of [ 200 ]\n   at Object.eval sandbox-script.js:1:1)",
           "checksum": "4dca3f8f353425284ea3969cd6df5d58",
-          "id": "16097495-0f4b-4b4d-b4c5-3212a417f8b4",
-          "timestamp": 1720119781959,
+          "id": "8bcd8ae6-3022-4c39-8c77-11827f07b10e",
+          "timestamp": 1720203038842,
           "stacktrace": [
             {
               "fileName": "sandbox-script.js",
@@ -703,7 +703,7 @@
         },
         "at": "assertion:0 in test-script",
         "source": {
-          "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+          "id": "040ed895-c349-42b8-ad63-55d9bf1ba05a",
           "name": "/v1/public/characters",
           "request": {
             "url": {
@@ -739,17 +739,17 @@
               "type": "apikey",
               "apikey": [
                 {
-                  "type": "any",
+                  "type": "string",
                   "value": "header",
                   "key": "in"
                 },
                 {
-                  "type": "any",
+                  "type": "string",
                   "value": "api_key",
                   "key": "key"
                 },
                 {
-                  "type": "any",
+                  "type": "string",
                   "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
                   "key": "value"
                 }
@@ -761,7 +761,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                "id": "110b9590-8824-420d-91ac-d6b228043753",
                 "type": "text/javascript",
                 "exec": [
                   "// Gerar timestamp\r",
@@ -777,13 +777,13 @@
                   "pm.environment.set(\"hash\", hash);\r",
                   ""
                 ],
-                "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+                "_lastExecutionId": "3fc2d6ad-4955-4272-8908-94e756ee17f8"
               }
             },
             {
               "listen": "test",
               "script": {
-                "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                "id": "a637b491-959d-4631-a027-d0bff4d505d7",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Successful GET request', function () {\r",
@@ -823,7 +823,7 @@
                   "\r",
                   ""
                 ],
-                "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+                "_lastExecutionId": "2ad28f8c-eb20-4bb4-94b3-ffe9f926dca8"
               }
             }
           ]
@@ -835,7 +835,7 @@
           },
           "item": [
             {
-              "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+              "id": "040ed895-c349-42b8-ad63-55d9bf1ba05a",
               "name": "/v1/public/characters",
               "request": {
                 "url": {
@@ -871,17 +871,17 @@
                   "type": "apikey",
                   "apikey": [
                     {
-                      "type": "any",
+                      "type": "string",
                       "value": "header",
                       "key": "in"
                     },
                     {
-                      "type": "any",
+                      "type": "string",
                       "value": "api_key",
                       "key": "key"
                     },
                     {
-                      "type": "any",
+                      "type": "string",
                       "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
                       "key": "value"
                     }
@@ -893,7 +893,7 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                    "id": "110b9590-8824-420d-91ac-d6b228043753",
                     "type": "text/javascript",
                     "exec": [
                       "// Gerar timestamp\r",
@@ -909,13 +909,13 @@
                       "pm.environment.set(\"hash\", hash);\r",
                       ""
                     ],
-                    "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+                    "_lastExecutionId": "3fc2d6ad-4955-4272-8908-94e756ee17f8"
                   }
                 },
                 {
                   "listen": "test",
                   "script": {
-                    "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                    "id": "a637b491-959d-4631-a027-d0bff4d505d7",
                     "type": "text/javascript",
                     "exec": [
                       "pm.test('Successful GET request', function () {\r",
@@ -955,7 +955,7 @@
                       "\r",
                       ""
                     ],
-                    "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+                    "_lastExecutionId": "2ad28f8c-eb20-4bb4-94b3-ffe9f926dca8"
                   }
                 }
               ]
@@ -965,17 +965,17 @@
             "type": "apikey",
             "apikey": [
               {
-                "type": "any",
+                "type": "string",
                 "value": "",
                 "key": "value"
               },
               {
-                "type": "any",
+                "type": "string",
                 "value": "",
                 "key": "key"
               },
               {
-                "type": "any",
+                "type": "string",
                 "value": "query",
                 "key": "in"
               }
@@ -985,34 +985,34 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "da054ebf-1237-4561-9cbf-9338dabb7fb5",
+                "id": "687ce36f-85da-4bce-812e-92dc8ea996df",
                 "type": "text/javascript",
                 "exec": [
-                  "// Gerar timestamp",
+                  "// Gera timestamp",
                   "const ts = new Date().getTime();",
                   "pm.environment.set(\"ts\", ts);",
                   "",
-                  "// Pegar chaves pública e privada",
+                  "// Pega chaves pública e privada",
                   "const publicKey = pm.environment.get(\"publicKey\");",
                   "const privateKey = pm.environment.get(\"privateKey\");",
                   "",
-                  "// Gerar hash",
+                  "// Gera hash",
                   "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();",
                   "pm.environment.set(\"hash\", hash);",
                   ""
                 ],
-                "_lastExecutionId": "b789b15d-70b0-4ee0-bd15-b82472c73a2b"
+                "_lastExecutionId": "40d1e250-2fa8-4c7a-af67-a14dedad3b65"
               }
             },
             {
               "listen": "test",
               "script": {
-                "id": "256143e0-b2bf-4d72-a6ac-409a25e161a5",
+                "id": "b7273c72-ffbd-42d5-9500-fce65b454254",
                 "type": "text/javascript",
                 "exec": [
                   ""
                 ],
-                "_lastExecutionId": "f3b35560-639a-4c58-bc46-4daa26c9df04"
+                "_lastExecutionId": "4f94f2f5-7c96-45ff-a692-bcb3b448e6ed"
               }
             }
           ],
@@ -1032,10 +1032,10 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "87afa7a9-38c7-4622-9a86-403a3179f015",
-          "httpRequestId": "8acabac1-495b-43fd-b675-4244506d3e66",
-          "scriptId": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
-          "execution": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+          "ref": "ffa4c9c3-dce0-4dc5-9315-63e20dfb45da",
+          "httpRequestId": "e6d8641e-3dab-48c9-b34f-3f5ec13ca4ed",
+          "scriptId": "a637b491-959d-4631-a027-d0bff4d505d7",
+          "execution": "2ad28f8c-eb20-4bb4-94b3-ffe9f926dca8"
         }
       },
       {
@@ -1046,8 +1046,8 @@
           "message": "expected '{\"code\":\"InvalidCredentials\",\"message…' to include '3-D Man'",
           "stack": "AssertionError: expected '{\"code\":\"InvalidCredentials\",\"message…' to include '3-D Man'\n   at Object.eval sandbox-script.js:2:1)",
           "checksum": "f65859ccfa60ea6e66ad0aeb96747c23",
-          "id": "b369a103-7334-4e0c-a9f8-4918df9792bb",
-          "timestamp": 1720119781963,
+          "id": "056edea7-4bb5-4aac-88e0-100e3644be4d",
+          "timestamp": 1720203038847,
           "stacktrace": [
             {
               "fileName": "sandbox-script.js",
@@ -1062,7 +1062,7 @@
         },
         "at": "assertion:1 in test-script",
         "source": {
-          "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+          "id": "040ed895-c349-42b8-ad63-55d9bf1ba05a",
           "name": "/v1/public/characters",
           "request": {
             "url": {
@@ -1098,17 +1098,17 @@
               "type": "apikey",
               "apikey": [
                 {
-                  "type": "any",
+                  "type": "string",
                   "value": "header",
                   "key": "in"
                 },
                 {
-                  "type": "any",
+                  "type": "string",
                   "value": "api_key",
                   "key": "key"
                 },
                 {
-                  "type": "any",
+                  "type": "string",
                   "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
                   "key": "value"
                 }
@@ -1120,7 +1120,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                "id": "110b9590-8824-420d-91ac-d6b228043753",
                 "type": "text/javascript",
                 "exec": [
                   "// Gerar timestamp\r",
@@ -1136,13 +1136,13 @@
                   "pm.environment.set(\"hash\", hash);\r",
                   ""
                 ],
-                "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+                "_lastExecutionId": "3fc2d6ad-4955-4272-8908-94e756ee17f8"
               }
             },
             {
               "listen": "test",
               "script": {
-                "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                "id": "a637b491-959d-4631-a027-d0bff4d505d7",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Successful GET request', function () {\r",
@@ -1182,7 +1182,7 @@
                   "\r",
                   ""
                 ],
-                "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+                "_lastExecutionId": "2ad28f8c-eb20-4bb4-94b3-ffe9f926dca8"
               }
             }
           ]
@@ -1194,7 +1194,7 @@
           },
           "item": [
             {
-              "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+              "id": "040ed895-c349-42b8-ad63-55d9bf1ba05a",
               "name": "/v1/public/characters",
               "request": {
                 "url": {
@@ -1230,17 +1230,17 @@
                   "type": "apikey",
                   "apikey": [
                     {
-                      "type": "any",
+                      "type": "string",
                       "value": "header",
                       "key": "in"
                     },
                     {
-                      "type": "any",
+                      "type": "string",
                       "value": "api_key",
                       "key": "key"
                     },
                     {
-                      "type": "any",
+                      "type": "string",
                       "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
                       "key": "value"
                     }
@@ -1252,7 +1252,7 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                    "id": "110b9590-8824-420d-91ac-d6b228043753",
                     "type": "text/javascript",
                     "exec": [
                       "// Gerar timestamp\r",
@@ -1268,13 +1268,13 @@
                       "pm.environment.set(\"hash\", hash);\r",
                       ""
                     ],
-                    "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+                    "_lastExecutionId": "3fc2d6ad-4955-4272-8908-94e756ee17f8"
                   }
                 },
                 {
                   "listen": "test",
                   "script": {
-                    "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                    "id": "a637b491-959d-4631-a027-d0bff4d505d7",
                     "type": "text/javascript",
                     "exec": [
                       "pm.test('Successful GET request', function () {\r",
@@ -1314,7 +1314,7 @@
                       "\r",
                       ""
                     ],
-                    "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+                    "_lastExecutionId": "2ad28f8c-eb20-4bb4-94b3-ffe9f926dca8"
                   }
                 }
               ]
@@ -1324,17 +1324,17 @@
             "type": "apikey",
             "apikey": [
               {
-                "type": "any",
+                "type": "string",
                 "value": "",
                 "key": "value"
               },
               {
-                "type": "any",
+                "type": "string",
                 "value": "",
                 "key": "key"
               },
               {
-                "type": "any",
+                "type": "string",
                 "value": "query",
                 "key": "in"
               }
@@ -1344,34 +1344,34 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "da054ebf-1237-4561-9cbf-9338dabb7fb5",
+                "id": "687ce36f-85da-4bce-812e-92dc8ea996df",
                 "type": "text/javascript",
                 "exec": [
-                  "// Gerar timestamp",
+                  "// Gera timestamp",
                   "const ts = new Date().getTime();",
                   "pm.environment.set(\"ts\", ts);",
                   "",
-                  "// Pegar chaves pública e privada",
+                  "// Pega chaves pública e privada",
                   "const publicKey = pm.environment.get(\"publicKey\");",
                   "const privateKey = pm.environment.get(\"privateKey\");",
                   "",
-                  "// Gerar hash",
+                  "// Gera hash",
                   "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();",
                   "pm.environment.set(\"hash\", hash);",
                   ""
                 ],
-                "_lastExecutionId": "b789b15d-70b0-4ee0-bd15-b82472c73a2b"
+                "_lastExecutionId": "40d1e250-2fa8-4c7a-af67-a14dedad3b65"
               }
             },
             {
               "listen": "test",
               "script": {
-                "id": "256143e0-b2bf-4d72-a6ac-409a25e161a5",
+                "id": "b7273c72-ffbd-42d5-9500-fce65b454254",
                 "type": "text/javascript",
                 "exec": [
                   ""
                 ],
-                "_lastExecutionId": "f3b35560-639a-4c58-bc46-4daa26c9df04"
+                "_lastExecutionId": "4f94f2f5-7c96-45ff-a692-bcb3b448e6ed"
               }
             }
           ],
@@ -1391,10 +1391,10 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "87afa7a9-38c7-4622-9a86-403a3179f015",
-          "httpRequestId": "8acabac1-495b-43fd-b675-4244506d3e66",
-          "scriptId": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
-          "execution": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+          "ref": "ffa4c9c3-dce0-4dc5-9315-63e20dfb45da",
+          "httpRequestId": "e6d8641e-3dab-48c9-b34f-3f5ec13ca4ed",
+          "scriptId": "a637b491-959d-4631-a027-d0bff4d505d7",
+          "execution": "2ad28f8c-eb20-4bb4-94b3-ffe9f926dca8"
         }
       },
       {
@@ -1405,8 +1405,8 @@
           "message": "expected response to have status code 200 but got 401",
           "stack": "AssertionError: expected response to have status code 200 but got 401\n   at Object.eval sandbox-script.js:6:1)",
           "checksum": "c3d52c3f4ca6e1b7a85156faf2dffe38",
-          "id": "caf3f4d5-2777-4a66-a062-a6a81c0bac79",
-          "timestamp": 1720119781966,
+          "id": "93c9de10-9e10-4045-8fb6-51e817cec753",
+          "timestamp": 1720203038850,
           "stacktrace": [
             {
               "fileName": "sandbox-script.js",
@@ -1421,7 +1421,7 @@
         },
         "at": "assertion:5 in test-script",
         "source": {
-          "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+          "id": "040ed895-c349-42b8-ad63-55d9bf1ba05a",
           "name": "/v1/public/characters",
           "request": {
             "url": {
@@ -1457,17 +1457,17 @@
               "type": "apikey",
               "apikey": [
                 {
-                  "type": "any",
+                  "type": "string",
                   "value": "header",
                   "key": "in"
                 },
                 {
-                  "type": "any",
+                  "type": "string",
                   "value": "api_key",
                   "key": "key"
                 },
                 {
-                  "type": "any",
+                  "type": "string",
                   "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
                   "key": "value"
                 }
@@ -1479,7 +1479,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                "id": "110b9590-8824-420d-91ac-d6b228043753",
                 "type": "text/javascript",
                 "exec": [
                   "// Gerar timestamp\r",
@@ -1495,13 +1495,13 @@
                   "pm.environment.set(\"hash\", hash);\r",
                   ""
                 ],
-                "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+                "_lastExecutionId": "3fc2d6ad-4955-4272-8908-94e756ee17f8"
               }
             },
             {
               "listen": "test",
               "script": {
-                "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                "id": "a637b491-959d-4631-a027-d0bff4d505d7",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('Successful GET request', function () {\r",
@@ -1541,7 +1541,7 @@
                   "\r",
                   ""
                 ],
-                "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+                "_lastExecutionId": "2ad28f8c-eb20-4bb4-94b3-ffe9f926dca8"
               }
             }
           ]
@@ -1553,7 +1553,7 @@
           },
           "item": [
             {
-              "id": "3465f2f0-6c07-40b0-ad2f-6f1413dbec03",
+              "id": "040ed895-c349-42b8-ad63-55d9bf1ba05a",
               "name": "/v1/public/characters",
               "request": {
                 "url": {
@@ -1589,17 +1589,17 @@
                   "type": "apikey",
                   "apikey": [
                     {
-                      "type": "any",
+                      "type": "string",
                       "value": "header",
                       "key": "in"
                     },
                     {
-                      "type": "any",
+                      "type": "string",
                       "value": "api_key",
                       "key": "key"
                     },
                     {
-                      "type": "any",
+                      "type": "string",
                       "value": "a511e6d2d12e605782b9d48d738406e774f1b79b",
                       "key": "value"
                     }
@@ -1611,7 +1611,7 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "b24643f9-13a8-4146-b18a-6180006cf5f1",
+                    "id": "110b9590-8824-420d-91ac-d6b228043753",
                     "type": "text/javascript",
                     "exec": [
                       "// Gerar timestamp\r",
@@ -1627,13 +1627,13 @@
                       "pm.environment.set(\"hash\", hash);\r",
                       ""
                     ],
-                    "_lastExecutionId": "41e9c663-3dae-48aa-84eb-58eeeaacef20"
+                    "_lastExecutionId": "3fc2d6ad-4955-4272-8908-94e756ee17f8"
                   }
                 },
                 {
                   "listen": "test",
                   "script": {
-                    "id": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
+                    "id": "a637b491-959d-4631-a027-d0bff4d505d7",
                     "type": "text/javascript",
                     "exec": [
                       "pm.test('Successful GET request', function () {\r",
@@ -1673,7 +1673,7 @@
                       "\r",
                       ""
                     ],
-                    "_lastExecutionId": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+                    "_lastExecutionId": "2ad28f8c-eb20-4bb4-94b3-ffe9f926dca8"
                   }
                 }
               ]
@@ -1683,17 +1683,17 @@
             "type": "apikey",
             "apikey": [
               {
-                "type": "any",
+                "type": "string",
                 "value": "",
                 "key": "value"
               },
               {
-                "type": "any",
+                "type": "string",
                 "value": "",
                 "key": "key"
               },
               {
-                "type": "any",
+                "type": "string",
                 "value": "query",
                 "key": "in"
               }
@@ -1703,34 +1703,34 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "da054ebf-1237-4561-9cbf-9338dabb7fb5",
+                "id": "687ce36f-85da-4bce-812e-92dc8ea996df",
                 "type": "text/javascript",
                 "exec": [
-                  "// Gerar timestamp",
+                  "// Gera timestamp",
                   "const ts = new Date().getTime();",
                   "pm.environment.set(\"ts\", ts);",
                   "",
-                  "// Pegar chaves pública e privada",
+                  "// Pega chaves pública e privada",
                   "const publicKey = pm.environment.get(\"publicKey\");",
                   "const privateKey = pm.environment.get(\"privateKey\");",
                   "",
-                  "// Gerar hash",
+                  "// Gera hash",
                   "const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();",
                   "pm.environment.set(\"hash\", hash);",
                   ""
                 ],
-                "_lastExecutionId": "b789b15d-70b0-4ee0-bd15-b82472c73a2b"
+                "_lastExecutionId": "40d1e250-2fa8-4c7a-af67-a14dedad3b65"
               }
             },
             {
               "listen": "test",
               "script": {
-                "id": "256143e0-b2bf-4d72-a6ac-409a25e161a5",
+                "id": "b7273c72-ffbd-42d5-9500-fce65b454254",
                 "type": "text/javascript",
                 "exec": [
                   ""
                 ],
-                "_lastExecutionId": "f3b35560-639a-4c58-bc46-4daa26c9df04"
+                "_lastExecutionId": "4f94f2f5-7c96-45ff-a692-bcb3b448e6ed"
               }
             }
           ],
@@ -1750,10 +1750,10 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "87afa7a9-38c7-4622-9a86-403a3179f015",
-          "httpRequestId": "8acabac1-495b-43fd-b675-4244506d3e66",
-          "scriptId": "52eaf21e-42ea-4661-9bd3-ebccf62002ec",
-          "execution": "d338952d-0925-4af8-9d7b-eb55de7fa0b8"
+          "ref": "ffa4c9c3-dce0-4dc5-9315-63e20dfb45da",
+          "httpRequestId": "e6d8641e-3dab-48c9-b34f-3f5ec13ca4ed",
+          "scriptId": "a637b491-959d-4631-a027-d0bff4d505d7",
+          "execution": "2ad28f8c-eb20-4bb4-94b3-ffe9f926dca8"
         }
       }
     ],
